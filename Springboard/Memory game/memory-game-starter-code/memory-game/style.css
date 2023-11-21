@@ -29,6 +29,10 @@
   background-color: white !important;
 }
 
+.game-container>div[data-paired='true'] {
+  box-shadow: inset 0 0 50px #dddcdc;
+}
+
 @keyframes winningAnimation {
   50% {
     transform: scale(1.1);

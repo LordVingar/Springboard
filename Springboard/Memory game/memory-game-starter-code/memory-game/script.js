@@ -85,11 +85,17 @@ function handleCardClick(event) {
   if (matching(previousTile, selected) === true) {
     pair(previousTile);
     pair(selected);
-    previousTile = undefined;
     if (isGameWon() === true) {
-      alert("Congratulations! You've matched all the pairs.");
-      resetGame();
+      showTile(selected);
+      // using the timer would show the last selection
+      timer = setTimeout(() => {
+        alert("Congratulations! You've matched all the pairs.");
+        resetGame();
+        clearTimeout(timer);
+        timer = undefined;
+      }, 10);
     }
+    previousTile = undefined;
     return;
   }
   timer = setTimeout(() => {
