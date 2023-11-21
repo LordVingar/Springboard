@@ -1,13 +1,28 @@
-#game div {
-  border: 1px solid black;
-  width: 15%;
-  height: 200px;
-  margin: 10px;
-  display: inline-block;
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
 }
 
-.flipped.matched {
+#game .flipped.matched {
   animation: winningAnimation 1s infinite;
+}
+
+.game-container {
+  display: grid;
+  gap: 10px;
+  grid-template-areas:
+    ". . . . ."
+    ". . . . .";
+  width: 80vw;
+  height: 400px;
+}
+
+.game-container>div {
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 @keyframes winningAnimation {
