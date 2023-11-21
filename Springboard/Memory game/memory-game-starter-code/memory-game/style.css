@@ -25,6 +25,10 @@
   border-radius: 5px;
 }
 
+.game-container>div[data-facing-up='false'] {
+  background-color: white !important;
+}
+
 @keyframes winningAnimation {
   50% {
     transform: scale(1.1);

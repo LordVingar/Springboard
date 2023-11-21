@@ -15,14 +15,9 @@ const COLORS = [
 // Reference to the game container in the HTML
 const gameContainer = document.getElementById("game");
 
-// Counter for matched pairs
-let matchedPairs = 0;
+let previousTile = undefined;
 
-// Initialize firstCard
-let firstCard = null;
-
-// Variable to track if cards are being matched
-let matching = false;
+let timer = undefined;
 
 // Function to shuffle an array using the Fisher-Yates algorithm
 function shuffle(array) {
@@ -39,14 +34,27 @@ function shuffle(array) {
   return array;
 }
 
-// Shuffle the COLORS array
-let shuffledColors = shuffle(COLORS);
+
+const isPaired = element => element.getAttribute('data-paired') === 'true';
+const pair = element => element.setAttribute('data-paired', true);
+const unpair = element => element.setAttribute('data-paired', false);
+const matching = (first, second) => first.style.backgroundColor === second.style.backgroundColor
+const isTileShowing = (element) => element.getAttribute('data-facing-up') === 'true'
+const showTile = (element) => element.setAttribute('data-facing-up', true)
+const hideTile = (element) => {
+  if (isPaired(element) === false)
+    element.setAttribute('data-facing-up', false)
+}
+
+const isGameWon = () => [...gameContainer.children].every(isPaired);
 
 // Function to create divs with colors for each card and attach click event listener
 function createDivsForColors(colorArray) {
   for (let color of colorArray) {
     const newDiv = document.createElement("div");
-    newDiv.classList.add(color);
+    hideTile(newDiv);
+    unpair(newDiv)
+    newDiv.style.backgroundColor = color;
     newDiv.addEventListener("click", handleCardClick);
     gameContainer.append(newDiv);
   }
@@ -54,64 +62,53 @@ function createDivsForColors(colorArray) {
 
 // Function to handle card clicks
 function handleCardClick(event) {
-  const selectedCard = event.target;
+  const selected = event.target;
 
-  // Ignore clicks on already matched cards or on the same card twice
-  if (
-    selectedCard.classList.contains("flipped") ||
-    selectedCard === firstCard ||
-    matching
-  ) {
+  // if tile is solved already take no action
+  if (isPaired(selected) === true) return;
+
+  // if tile is showing already take no action
+  if (isTileShowing(selected) === true) return;
+
+  // timer engaged
+  if (timer !== undefined) return;
+
+  // show tile
+  showTile(selected);
+
+  // if no other is showing
+  if (previousTile === undefined) {
+    previousTile = selected;
     return;
   }
 
-  selectedCard.style.backgroundColor = selectedCard.classList[0];
-
-  if (!firstCard) {
-    // This is the first card clicked
-    firstCard = selectedCard;
-  } else {
-    // This is the second card clicked
-    if (selectedCard.classList[0] === firstCard.classList[0]) {
-      // It's a match!
-      matching = true;
-      matchedPairs++;
-
-      // Mark both cards as matched
-      selectedCard.classList.add("flipped");
-      firstCard.classList.add("flipped");
-
-      // Check if all pairs are matched
-      if (matchedPairs === COLORS.length / 2) {
-        alert("Congratulations! You've matched all the pairs.");
-        resetGame();
-      }
-
-      // Reset the firstCard variable for the next turn
-      firstCard = null;
-      matching = false;
-    } else {
-      // It's not a match, reset the cards after a short delay
-      setTimeout(() => {
-        selectedCard.style.backgroundColor = "";
-        firstCard.style.backgroundColor = "";
-        matching = false;
-        firstCard = null;
-      }, 1000);
+  if (matching(previousTile, selected) === true) {
+    pair(previousTile);
+    pair(selected);
+    previousTile = undefined;
+    if (isGameWon() === true) {
+      alert("Congratulations! You've matched all the pairs.");
+      resetGame();
     }
+    return;
   }
+  timer = setTimeout(() => {
+    hideTile(previousTile);
+    previousTile = undefined
+    hideTile(selected);
+    clearTimeout(timer);
+    timer = undefined;
+  }, 1000);
 }
 
 // Function to reset the game
 function resetGame() {
   matchedPairs = 0;
-  // Remove the "flipped" class from all cards
-  document.querySelectorAll(".flipped").forEach(card => card.classList.remove("flipped"));
+  gameContainer.innerHTML = "";
   // Reshuffle the colors and recreate the cards
   shuffledColors = shuffle(COLORS);
   gameContainer.innerHTML = "";
   createDivsForColors(shuffledColors);
 }
 
-// Initial setup: create divs for colors and set up click event listeners
-createDivsForColors(shuffledColors);
+resetGame()
