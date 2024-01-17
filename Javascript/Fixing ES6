@@ -1,0 +1,18 @@
+const PI = 3.14;
+
+// PI cannot be redefined.
+
+//var vs let
+//var: function or globally scoped, hoisted and can be reassigned.
+//let: Block-scoped, not hoisted, and can be reassigned.
+
+// var VS const
+//var:Function-scoped, can be reassigned.
+//const: Block-scoped, constant.
+
+//let vs const
+//let: Block-scoped, can be reassigned.
+//const: Block-scoped, constant.
+
+//Hoisting
+//Variables and functions are moved to the top of their scop during compilation

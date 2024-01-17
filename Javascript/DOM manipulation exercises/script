@@ -1,0 +1,30 @@
+
+const containerWithoutQuerySelector = document.getElementById('container');
+
+const containerWithQuerySelector = document.querySelector('#container');
+
+const secondListItems = document.getElementsByClassName('second');
+
+const thirdListItemInOl = document.querySelector('ol .third');
+
+containerWithQuerySelector.innerText = 'Hello!';
+
+const footerDiv = document.querySelector('.footer');
+footerDiv.classList.add('main');
+
+footerDiv.classList.remove('main');
+
+const newLi = document.createElement('li');
+
+newLi.innerText = 'four';
+
+const ul = document.querySelector('ul');
+ul.appendChild(newLi);
+
+const olListItems = document.querySelectorAll('ol li');
+olListItems.forEach(li => {
+    li.style.backgroundColor = 'green';
+});
+
+const footerToRemove = document.querySelector('.footer');
+footerToRemove.remove();
