@@ -1,0 +1,20 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Madlibs Home</title>
+</head>
+<body>
+    <h1>Welcome to Madlibs!</h1>
+    <form method="POST">
+        <label for="template">Select a Story Template:</label>
+        <select name="template" id="template">
+            {% for template in templates %}
+                <option value="{{ template }}">{{ template }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" value="Start Madlib">
+    </form>
+</body>
+</html>
