@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block heading %}Choose a Survey{% endblock %}
+
+{% block content %}
+<ul>
+  {% for survey_name, survey in surveys.items() %}
+    <li><a href="{{ url_for('survey', survey_name=survey_name, question_index=0) }}">{{ survey.title }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
