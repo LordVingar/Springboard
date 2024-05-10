@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="/answer" method="POST">
+        <fieldset>
+            <legend>{{ question.question }}</legend>
+            {% for choice in question.choices %}
+                <div>
+                    <input type="radio" id="{{ loop.index }}" name="answer" value="{{ choice }}">
+                    <label for="{{ loop.index }}">{{ choice }}</label>
+                </div>
+            {% endfor %}
+        </fieldset>
+        <input type="hidden" name="question_id" value="{{ question_id }}">
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
+
+{% if question.allow_text %}
+<textarea name="comment" placeholder="Your comment here..."></textarea>
+{% endif %}

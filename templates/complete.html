@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Survey Results</h2>
+<dl>
+    {% for response, question in zip(session['responses'], surveys[session['survey_code']].questions) %}
+    <dt>{{ question.question }}</dt>
+    <dd>{{ response.answer }}{% if response.comment %}: {{ response.comment }}{% endif %}</dd>
+    {% endfor %}
+</dl>
+{% endblock %}

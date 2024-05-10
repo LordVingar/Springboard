@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul>
+    {% for code, survey in surveys.items() %}
+    <li><a href="{{ url_for('start_survey', survey_code=code) }}">{{ survey.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
