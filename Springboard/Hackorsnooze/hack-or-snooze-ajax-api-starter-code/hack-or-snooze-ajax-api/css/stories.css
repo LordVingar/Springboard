@@ -1,0 +1,87 @@
+/* Lists of stories */
+
+.stories-list {
+  margin: 20px 5px;
+}
+
+.stories-list > li {
+  color: gray;
+  font-size: 0.8rem;
+  margin: 10px 0;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px; /* Add some padding to separate the stories */
+}
+
+#stories-loading-msg {
+  font-weight: bold;
+  font-size: 150%;
+  margin: 20px 30px;
+}
+
+
+/* Individual stories */
+
+.story-link {
+  color: black;
+  font-size: 0.85rem;
+  font-weight: normal;
+  margin: 18px 0;
+}
+
+.story-link:hover {
+  text-decoration: none;
+}
+
+.story-author {
+  margin-left: 2em;
+  font-style: italic;
+  color: #666;
+  margin-bottom: 3px;
+}
+
+.story-user {
+  display: block;
+}
+
+/* Story title styling */
+.story-title {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Story user styling */
+.story-user {
+  color: #999;
+  font-size: 0.8em;
+}
+
+/* Story item styling */
+.story-item {
+  margin-bottom: 20px; /* Add spacing between story items */
+}
+
+.stories-container .stories-list li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+  display: flex; /* Use flexbox */
+  justify-content: space-between; /* Space items evenly along the main axis */
+  align-items: center; /* Center items along the cross axis */
+}
+
+.stories-container .stories-list li a {
+  font-size: 0.8rem; /* Adjust font size as needed */
+  font-weight: bold;
+  color: #333;
+}
+
+.stories-container .stories-list li small {
+  font-size: 0.7rem; /* Adjust font size as needed */
+  color: #666;
+}
+
+.stories-container .stories-list li .story-user {
+  color: #888;
+}

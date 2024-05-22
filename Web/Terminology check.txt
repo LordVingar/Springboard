@@ -1,0 +1,23 @@
+In your own terms, define the following terms:
+    • What is HTTP? Hyper Text Transfer Protocol, on a high level its how the internet communicates. A standardized method of communication, usually between servers and browsers.
+    • What is a URL? A unique resource address composed of multiple parts.
+    • What is DNS?  The Domain Name System a translation book that turns URLs from human readable to unique computer readable addresses.
+    • What is a query string? Part of a URL that specifies a search query
+    • What are two HTTP verbs and how are they different? “GET” is a request to send data to a browser. “POST” is a request to upload data.
+    • What is an HTTP request? A communication between browser and webpage server. 
+    • What is an HTTP response? A response made by a server to the above.
+    • What is an HTTP header? Give a couple examples of request and response headers you have seen. A header is a customized option to include extra information with an HTTP request or response. Headers I’ve seen; Authorization, Cookie and Set-Cookie, location redirect,
+    • What are the processes that happen when you type “http://somesite.com/some/page.html” into a browser? A request is sent to the DNS to connect to that site, DNS provides the IP to request the site. Browser sends HTTP request to server, servers sends back response. Browser loads web page. 
+
+Part Two: Practice Tools
+    1. Using curl, make a GET request to the icanhazdadjoke.com API to find all jokes involving the word “pirate” 
+Why couldn't the kid see the pirate movie? Because it was rated arrr!
+What does a pirate pay for his corn? A buccaneer!
+What did the pirate say on his 80th birthday? Aye Matey!
+Why do pirates not know the alphabet? They always get stuck at "C".
+Why are pirates called pirates? Because they arrr!
+
+    2. Use dig to find what the IP address is for icanhazdadjoke.com 
+icanhazdadjoke.com. 300 IN A 172.67.198.173 
+icanhazdadjoke.com. 300 IN A 104.21.66.15 
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title and Rating App</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <style>
+        .item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Title and Rating App</h1>
+    <div class="container">
+        <h1>Movie Ratings</h1>
+        <form id="movieForm">
+          <label for="titleInput">Title:</label>
+          <input type="text" id="titleInput" minlength="2" required>
+          <label for="ratingInput">Rating (0-10):</label>
+          <input type="number" id="ratingInput" min="0" max="10" required>
+          <button type="submit">Submit</button>
+        </form>
+        <div id="movieList"></div>
+        <button id="sortByTitleAsc">Sort by Title (A-Z)</button>
+        <button id="sortByTitleDesc">Sort by Title (Z-A)</button>
+        <button id="sortByRatingAsc">Sort by Rating (Lowest to Highest)</button>
+        <button id="sortByRatingDesc">Sort by Rating (Highest to Lowest)</button>
+    </form>
+    <div id="titleRatingList"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
