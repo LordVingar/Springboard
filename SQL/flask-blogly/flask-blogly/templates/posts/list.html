@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}All Posts{% endblock %}
+
+{% block content %}
+<h1>All Posts</h1>
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{{ url_for('show_post', post_id=post.id) }}">{{ post.title }}</a>
+            by {{ post.user.get_full_name() }}
+        </li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('add_post') }}" class="btn btn-primary">Add Post</a>
+{% endblock %}
