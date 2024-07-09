@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cupcake App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Cupcake App</h1>
+        <ul id="cupcake-list" class="list-group mb-3"></ul>
+        <form id="cupcake-form">
+            <div class="form-group">
+                <label for="flavor">Flavor</label>
+                <input type="text" class="form-control" id="flavor" name="flavor" required>
+            </div>
+            <div class="form-group">
+                <label for="size">Size</label>
+                <input type="text" class="form-control" id="size" name="size" required>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input type="number" step="0.1" class="form-control" id="rating" name="rating" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image URL</label>
+                <input type="url" class="form-control" id="image" name="image">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Cupcake</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Function to get and display cupcakes
+            function getCupcakes() {
+                axios.get('/api/cupcakes')
+                    .then(response => {
+                        const cupcakes = response.data.cupcakes;
+                        $('#cupcake-list').empty();
+                        for (let cupcake of cupcakes) {
+                            $('#cupcake-list').append(`<li class="list-group-item">
+                                <img src="${cupcake.image}" alt="${cupcake.flavor}" width="50">
+                                ${cupcake.flavor} (${cupcake.size}) - Rating: ${cupcake.rating}
+                            </li>`);
+                        }
+                    })
+                    .catch(error => console.error('Error fetching cupcakes:', error));
+            }
+
+            // Initial fetch of cupcakes
+            getCupcakes();
+
+            // Handle form submission
+            $('#cupcake-form').on('submit', function(event) {
+                event.preventDefault();
+                const newCupcake = {
+                    flavor: $('#flavor').val(),
+                    size: $('#size').val(),
+                    rating: $('#rating').val(),
+                    image: $('#image').val() || 'https://tinyurl.com/demo-cupcake'
+                };
+                axios.post('/api/cupcakes', newCupcake)
+                    .then(response => {
+                        getCupcakes();
+                        $('#cupcake-form').trigger('reset');
+                    })
+                    .catch(error => console.error('Error adding cupcake:', error));
+            });
+        });
+    </script>
+</body>
+</html>
