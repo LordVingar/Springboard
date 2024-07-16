@@ -10,3 +10,95 @@ Javascript/HatchWays meme generator assessment/HTML.html
 Javascript/HatchWays meme generator assessment/helpers.test.js
 Javascript/HatchWays meme generator assessment/.vscode/launch.json
 /venv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+.installed.cfg
+*.egg
+*.whl
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Node
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# MySQL
+*.pid
+*.seed
+*.key
+*.crt
+*.opt
+*.csr
+
+# Environment variables
+.env
+
+# Flask
+instance/
+*.pyc
+
+# Database
+*.sqlite3
+*.db
+
+# Backups
+*.bak
+*.backup
+*.tar.gz
+*.tgz
+*.gz
+*.zip
+*.tar
+
+# Temporary files
+*.tmp
+*.temp
+
+# Virtual environment
+venv/
